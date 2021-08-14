@@ -49,7 +49,7 @@ add_subdirectory (src)
 
 if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
 include(CMakePrintHelpers)
-	cmake_print_variables (CMAKE_PROJECT_NAME CMAKE_VERSION)
+	cmake_print_variables (lib_${CMAKE_PROJECT_NAME} CMAKE_VERSION)
 	# cmake_print_properties(TARGETS ${CMAKE_PROJECT_NAME} PROPERTIES TYPE ALIASED_TARGET)
 endif()
 
