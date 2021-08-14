@@ -57,3 +57,5 @@ endif()
 if ((CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME OR ${CMAKE_PROJECT_NAME}_BUILD_TESTING) AND BUILD_TESTING)
 	add_subdirectory (tests)
 endif()
+
+add_subdirectory (apps)
