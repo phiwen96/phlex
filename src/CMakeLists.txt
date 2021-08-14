@@ -24,7 +24,27 @@ add_library (lib
 	# ALIAS ${CMAKE_PROJECT_NAME}::${CMAKE_PROJECT_NAME}
 )
 
+set_target_properties (lib PROPERTIES
+  CXX_STANDARD 20
+  CXX_STANDARD_REQUIRED ON
+  CXX_EXTENSIONS OFF
+)
 
+# Make override a feature requirement only if available
+target_compile_features (lib 
+	PUBLIC
+  		$<$<COMPILE_FEATURES:cxx_override>:cxx_override>
+)
+# Define the foo_OVERRIDE symbol so it provides the
+# override keyword if available or empty otherwise
+target_compile_definitions (lib 
+	PUBLIC
+  		$<$<COMPILE_FEATURES:cxx_override>:-D${CMAKE_PROJECT_NAME}_OVERRIDE=override>
+  		$<$<NOT:$<COMPILE_FEATURES:cxx_override>>:-D${CMAKE_PROJECT_NAME}_OVERRIDE>
+
+	PRIVATE 
+		"$<$<CONFIG:DEBUG>:DEBUG> $<$<CONFIG:RELEASE>:RELEASE>"
+)
 
 
 target_compile_definitions (lib PRIVATE "$<$<CONFIG:DEBUG>:DEBUG> $<$<CONFIG:RELEASE>:RELEASE>")
@@ -59,7 +79,7 @@ target_include_directories(lib PUBLIC
 )
 
 if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
-    set_target_properties (lib PROPERTIES FOLDER "lib")
+    # set_target_properties (lib PROPERTIES FOLDER "lib/")
 else ()
     set_target_properties (lib PROPERTIES FOLDER "dependencies/${CMAKE_PROJECT_NAME}")
 endif ()

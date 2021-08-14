@@ -47,10 +47,15 @@ endif ()
 
 add_subdirectory (src)
 
+add_subdirectory (applications)
+
+add_subdirectory (docs)
+
 if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
-include(CMakePrintHelpers)
-	cmake_print_variables (lib_${CMAKE_PROJECT_NAME} CMAKE_VERSION)
+# include(CMakePrintHelpers)
+	# cmake_print_variables (lib CMAKE_VERSION)
 	# cmake_print_properties(TARGETS ${CMAKE_PROJECT_NAME} PROPERTIES TYPE ALIASED_TARGET)
+	add_subdirectory (tests)
 endif()
 
 
@@ -58,4 +63,3 @@ if ((CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME OR ${CMAKE_PROJECT_NAME}_BUILD_TES
 	add_subdirectory (tests)
 endif()
 
-add_subdirectory (apps)
