@@ -43,16 +43,16 @@ target_compile_features (lib
 # Define the foo_OVERRIDE symbol so it provides the
 # override keyword if available or empty otherwise
 target_compile_definitions (lib 
-	PUBLIC
-  		$<$<COMPILE_FEATURES:cxx_override>:-D${CMAKE_PROJECT_NAME}_OVERRIDE=override>
-  		$<$<NOT:$<COMPILE_FEATURES:cxx_override>>:-D${CMAKE_PROJECT_NAME}_OVERRIDE>
+	# PUBLIC
+  	# 	$<$<COMPILE_FEATURES:cxx_override>:-D${CMAKE_PROJECT_NAME}_OVERRIDE=override>
+  	# 	$<$<NOT:$<COMPILE_FEATURES:cxx_override>>:-D${CMAKE_PROJECT_NAME}_OVERRIDE>
 
 	PRIVATE 
 		"$<$<CONFIG:DEBUG>:DEBUG> $<$<CONFIG:RELEASE>:RELEASE>"
 )
 
 
-target_compile_definitions (lib PRIVATE "$<$<CONFIG:DEBUG>:DEBUG> $<$<CONFIG:RELEASE>:RELEASE>")
+# target_compile_definitions (lib PRIVATE "$<$<CONFIG:DEBUG>:DEBUG> $<$<CONFIG:RELEASE>:RELEASE>")
 
 
 # target_sources (ph_concepts PRIVATE in/platform.hpp)
@@ -64,8 +64,8 @@ target_compile_features (lib PUBLIC cxx_std_20)
 ph_precompile (TARGET lib PRIVATE PCH ${std_pch})
 
 # add_library (${CMAKE_PROJECT_NAME} ALIAS ${CMAKE_PROJECT_NAME}::${CMAKE_PROJECT_NAME})
-# target_link_libraries (ph_concepts PRIVATE ${Boost_LIBRARIES})
-target_include_directories (lib PUBLIC ${PROJECT_SOURCE_DIR}/include)
+# target_link_libraries (lib PRIVATE    ${Vulkan_LIBRARIES} glfw)
+target_include_directories (lib PUBLIC ${CMAKE_PROJECT_SOURCE_DIR}/include)
 # target_include_directories (ph_concepts PRIVATE ${Boost_INCLUDE_DIRS})
 
 target_compile_features (lib PUBLIC cxx_std_20)

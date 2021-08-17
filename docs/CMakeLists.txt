@@ -6,3 +6,8 @@ foreach(file ${DOCS_LIST})
         FILES  ${file}
     )
 endforeach()
+
+add_custom_target (docs
+	DEPENDS 
+
+)

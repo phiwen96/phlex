@@ -16,6 +16,10 @@ project (
 
 unset (self)
 
+set(GLFW_BUILD_EXAMPLES OFF)
+set(GLFW_BUILD_TESTS OFF)
+set(GLFW_BUILD_DOCS OFF)
+
 if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
 	enable_testing()
 	set (CMAKE_CXX_STANDARD 20)
@@ -23,6 +27,7 @@ if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
 	set (CMAKE_CXX_EXTENSIONS ON)
 	set_property (GLOBAL PROPERTY USE_FOLDERS ON)
 endif()
+
 
  
 if (NOT TARGET ph_cmake)
@@ -41,6 +46,37 @@ if (NOT TARGET ph_cmake)
 endif ()
 
 
+
+find_package(Vulkan REQUIRED)
+
+
+FetchContent_Declare(glfw
+  GIT_REPOSITORY https://github.com/glfw/glfw.git
+  INSTALL_COMMAND ""
+  )
+
+FetchContent_GetProperties(glfw)
+if(NOT glfw_POPULATED)
+  FetchContent_Populate(glfw)
+  add_subdirectory(${glfw_SOURCE_DIR} ${glfw_BINARY_DIR} EXCLUDE_FROM_ALL)
+endif()
+
+
+
+
+
+
+
+FetchContent_Declare(glm
+  GIT_REPOSITORY https://github.com/g-truc/glm.git
+  INSTALL_COMMAND ""
+  )
+
+FetchContent_GetProperties(glm)
+if(NOT glm_POPULATED)
+  FetchContent_Populate(glm)
+  add_subdirectory(${glm_SOURCE_DIR} ${glm_BINARY_DIR} EXCLUDE_FROM_ALL)
+endif()
 
 
 
