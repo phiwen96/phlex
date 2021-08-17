@@ -1,14 +1,14 @@
-file(GLOB HEADER_LIST CONFIGURE_DEPENDS "../include/${CMAKE_PROJECT_NAME}/*.hpp")
+file(GLOB HEADER_LIST CONFIGURE_DEPENDS "../include/phlex/*.hpp")
 
 foreach(file ${HEADER_LIST})
-    source_group (TREE include/${CMAKE_PROJECT_NAME}
+    source_group (TREE "${CMAKE_CURRENT_LIST_DIR}/../include/phlex"
         PREFIX "include"               
         FILES  ${file}
     )
 endforeach()
 
 
-file(GLOB SOURCE_LIST CONFIGURE_DEPENDS "*.cpp")
+file(GLOB SOURCE_LIST CONFIGURE_DEPENDS "${CMAKE_CURRENT_LIST_DIR}/*.cpp")
 
 foreach(file ${SOURCE_LIST})
     source_group (TREE ${CMAKE_CURRENT_LIST_DIR}
@@ -19,13 +19,13 @@ endforeach()
 
 
 
-add_library (lib
+add_library (phlex
 	${SOURCE_LIST}  ${HEADER_LIST} 
-	# ALIAS ${CMAKE_PROJECT_NAME}::${CMAKE_PROJECT_NAME}
+	# ALIAS phlex::phlex
 )
 
 set_target_properties (
-	lib 
+	phlex 
 
 	PROPERTIES
   		CXX_STANDARD 20
@@ -36,16 +36,16 @@ set_target_properties (
 		""
 )
 # Make override a feature requirement only if available
-target_compile_features (lib 
-	PUBLIC
-  		$<$<COMPILE_FEATURES:cxx_override>:cxx_override>
-)
+# target_compile_features (phlex 
+# 	PUBLIC
+#   		$<$<COMPILE_FEATURES:cxx_override>:cxx_override>
+# )
 # Define the foo_OVERRIDE symbol so it provides the
 # override keyword if available or empty otherwise
-target_compile_definitions (lib 
+target_compile_definitions (phlex 
 	# PUBLIC
-  	# 	$<$<COMPILE_FEATURES:cxx_override>:-D${CMAKE_PROJECT_NAME}_OVERRIDE=override>
-  	# 	$<$<NOT:$<COMPILE_FEATURES:cxx_override>>:-D${CMAKE_PROJECT_NAME}_OVERRIDE>
+  	# 	$<$<COMPILE_FEATURES:cxx_override>:-Dphlex_OVERRIDE=override>
+  	# 	$<$<NOT:$<COMPILE_FEATURES:cxx_override>>:-Dphlex_OVERRIDE>
 
 	PRIVATE 
 		"$<$<CONFIG:DEBUG>:DEBUG> $<$<CONFIG:RELEASE>:RELEASE>"
@@ -56,37 +56,39 @@ target_compile_definitions (lib
 
 
 # target_sources (ph_concepts PRIVATE in/platform.hpp)
-set (self ${CMAKE_PROJECT_NAME})
+set (self phlex)
 
-set_target_properties (lib PROPERTIES CXX_STANDARD 20)
-target_compile_features (lib PUBLIC cxx_std_20)
+set_target_properties (phlex PROPERTIES CXX_STANDARD 20)
+target_compile_features (phlex PUBLIC cxx_std_20)
 
-ph_precompile (TARGET lib PRIVATE PCH ${std_pch})
+ph_precompile (TARGET phlex PRIVATE PCH ${std_pch})
 
-# add_library (${CMAKE_PROJECT_NAME} ALIAS ${CMAKE_PROJECT_NAME}::${CMAKE_PROJECT_NAME})
+# add_library (phlex ALIAS phlex::phlex)
 # target_link_libraries (lib PRIVATE    ${Vulkan_LIBRARIES} glfw)
-target_include_directories (lib PUBLIC ${CMAKE_PROJECT_SOURCE_DIR}/include)
+target_link_libraries (phlex PRIVATE ph_file)
+
+target_include_directories (phlex PUBLIC ${CMAKE_PROJECT_SOURCE_DIR}/include ph_file)
 # target_include_directories (ph_concepts PRIVATE ${Boost_INCLUDE_DIRS})
 
-target_compile_features (lib PUBLIC cxx_std_20)
+target_compile_features (phlex PUBLIC cxx_std_20)
 
 # target_compile_options(ph_concepts PUBLIC "-ast-dump  -fsyntax-only")
 
 
-target_include_directories(lib PRIVATE
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/../include/${CMAKE_PROJECT_NAME}>
-    $<INSTALL_INTERFACE:include/${CMAKE_PROJECT_NAME}>
+target_include_directories(phlex PRIVATE
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/../include/phlex>
+    $<INSTALL_INTERFACE:include/phlex>
 )
 
-target_include_directories(lib PUBLIC
+target_include_directories(phlex PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/../include>
     $<INSTALL_INTERFACE:include>
 )
 
-if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+if (PROJECT_NAME STREQUAL PROJECT_NAME)
     # set_target_properties (lib PROPERTIES FOLDER "lib/")
 else ()
-    set_target_properties (lib PROPERTIES FOLDER "dependencies/${CMAKE_PROJECT_NAME}")
+    set_target_properties (phlex PROPERTIES FOLDER "dependencies/phlex")
 endif ()
 
 

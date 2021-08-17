@@ -16,9 +16,9 @@ project (
 
 unset (self)
 
-set(GLFW_BUILD_EXAMPLES OFF)
-set(GLFW_BUILD_TESTS OFF)
-set(GLFW_BUILD_DOCS OFF)
+# set(GLFW_BUILD_EXAMPLES OFF)
+# set(GLFW_BUILD_TESTS OFF)
+# set(GLFW_BUILD_DOCS OFF)
 
 if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
 	enable_testing()
@@ -26,6 +26,7 @@ if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
 	set (CMAKE_CXX_STANDARD_REQUIRED ON)
 	set (CMAKE_CXX_EXTENSIONS ON)
 	set_property (GLOBAL PROPERTY USE_FOLDERS ON)
+	
 endif()
 
 
@@ -46,37 +47,53 @@ if (NOT TARGET ph_cmake)
 endif ()
 
 
+if (NOT TARGET ph_file)
+	include (FetchContent)
+	FetchContent_Declare(
+  		ph_file
+  		GIT_REPOSITORY https://github.com/phiwen96/ph_file.git
+  		GIT_TAG        v0_0_0)
 
-find_package(Vulkan REQUIRED)
-
-
-FetchContent_Declare(glfw
-  GIT_REPOSITORY https://github.com/glfw/glfw.git
-  INSTALL_COMMAND ""
-  )
-
-FetchContent_GetProperties(glfw)
-if(NOT glfw_POPULATED)
-  FetchContent_Populate(glfw)
-  add_subdirectory(${glfw_SOURCE_DIR} ${glfw_BINARY_DIR} EXCLUDE_FROM_ALL)
-endif()
-
-
+	FetchContent_GetProperties (ph_file)
+	
+	if (NOT ph_file_POPULATED)
+  		FetchContent_Populate (ph_file)
+  		add_subdirectory (${ph_file_SOURCE_DIR} ${ph_file_BINARY_DIR})
+	endif ()
+endif ()
 
 
 
+# find_package(Vulkan REQUIRED)
 
 
-FetchContent_Declare(glm
-  GIT_REPOSITORY https://github.com/g-truc/glm.git
-  INSTALL_COMMAND ""
-  )
+# FetchContent_Declare(glfw
+#   GIT_REPOSITORY https://github.com/glfw/glfw.git
+#   INSTALL_COMMAND ""
+#   )
 
-FetchContent_GetProperties(glm)
-if(NOT glm_POPULATED)
-  FetchContent_Populate(glm)
-  add_subdirectory(${glm_SOURCE_DIR} ${glm_BINARY_DIR} EXCLUDE_FROM_ALL)
-endif()
+# FetchContent_GetProperties(glfw)
+# if(NOT glfw_POPULATED)
+#   FetchContent_Populate(glfw)
+#   add_subdirectory(${glfw_SOURCE_DIR} ${glfw_BINARY_DIR} EXCLUDE_FROM_ALL)
+# endif()
+
+
+
+
+
+
+
+# FetchContent_Declare(glm
+#   GIT_REPOSITORY https://github.com/g-truc/glm.git
+#   INSTALL_COMMAND ""
+#   )
+
+# FetchContent_GetProperties(glm)
+# if(NOT glm_POPULATED)
+#   FetchContent_Populate(glm)
+#   add_subdirectory(${glm_SOURCE_DIR} ${glm_BINARY_DIR} EXCLUDE_FROM_ALL)
+# endif()
 
 
 
