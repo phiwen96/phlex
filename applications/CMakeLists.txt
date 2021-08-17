@@ -10,7 +10,7 @@ endforeach()
 
 add_executable (app ${SOURCE_LIST})
 
-target_link_libraries (app PRIVATE lib)
+target_link_libraries (app PRIVATE phlex ph_file)
 
 set_target_properties (
 	app 
