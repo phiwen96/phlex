@@ -49,3 +49,13 @@ foo@bar:myApp$ phlex
 	README.md: ""
 }
 ```
+
+example of a .phlex file, hint to it the things you want it to know, for example to let it know where and how to create a new file for your c++ application.
+
+
+spotify/src/.phlex
+```json
+.cpp 
+
+```
+
