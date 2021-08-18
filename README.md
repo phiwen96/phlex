@@ -4,7 +4,36 @@ Learns your coding habits and makes development much easier and automated, allow
 
 
 ```console
-foo@bar:~$ phlex new project
+foo@bar:~$ phlex 
+<spotify> run
+...
+<spotify> finish
+<spotify> file templates
+
+file templates 
+[
+	{
+		name: "class"
+		word_count: 20
+	}
+	{
+		name: "private lib file"
+		word_count: 18
+	}
+]
+
+<spotify> new private lib file
+	name << Window
+<spotify> 
+name << myApp
+
+
+name << "Window"
+
+
+
+
+foo@bar:~Hej$  
 ```
 
 
