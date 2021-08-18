@@ -105,6 +105,7 @@ add_subdirectory (applications)
 add_subdirectory (docs)
 
 if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+# message("bahs")
 # include(CMakePrintHelpers)
 	# cmake_print_variables (lib CMAKE_VERSION)
 	# cmake_print_properties(TARGETS ${CMAKE_PROJECT_NAME} PROPERTIES TYPE ALIASED_TARGET)
@@ -112,7 +113,8 @@ if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
 endif()
 
 
-if ((CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME OR ${CMAKE_PROJECT_NAME}_BUILD_TESTING) AND BUILD_TESTING)
-	add_subdirectory (tests)
-endif()
+# if ((CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME OR ${CMAKE_PROJECT_NAME}_BUILD_TESTING) AND BUILD_TESTING)
+# 	add_subdirectory (tests)
+# 	message("bahjs")
+# endif()
 
