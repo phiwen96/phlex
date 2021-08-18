@@ -8,7 +8,7 @@
 
 # add_test (NAME test_1 COMMAND app $<TARGET_FILE:app>)
 
-
+add_test (NAME first COMMAND $<TARGET_FILE:app> CONFIGURATIONS Debug Release)
 
 # set_tests_properties (test_0 PROPERTIES TIMEOUT 10)
 # set_tests_properties(test_1 PROPERTIES TIMEOUT 10)
