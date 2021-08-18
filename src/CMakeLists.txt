@@ -65,9 +65,9 @@ ph_precompile (TARGET phlex PRIVATE PCH ${std_pch})
 
 # add_library (phlex ALIAS phlex::phlex)
 # target_link_libraries (lib PRIVATE    ${Vulkan_LIBRARIES} glfw)
-target_link_libraries (phlex PRIVATE ph_file)
+target_link_libraries (phlex PRIVATE ph_file ph_concepts)
 
-target_include_directories (phlex PUBLIC ${CMAKE_PROJECT_SOURCE_DIR}/include ph_file)
+target_include_directories (phlex PUBLIC ${CMAKE_PROJECT_SOURCE_DIR}/include ph_file ph_concepts)
 # target_include_directories (ph_concepts PRIVATE ${Boost_INCLUDE_DIRS})
 
 target_compile_features (phlex PUBLIC cxx_std_20)

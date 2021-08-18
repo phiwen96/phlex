@@ -1,6 +1,7 @@
 #include <iostream>
 #include <phlex/phlex.hpp>
 #include <ph_file/file.hpp>
+#include <ph_co
 using std::cout, std::endl;
 
 
@@ -16,7 +17,7 @@ enum struct APPLICATION_MODE : int
 auto start_console (auto conf) -> int
 {
     
-    while (true)
+    while (false)
     {
         cout << ">>";
         
@@ -59,6 +60,15 @@ int main (int argc, char** argv)
 	return 0;
 }
 
+//#include <ostream>
+
+struct A
+{
+    auto operator << (std::basic_ostream<char>& o) const noexcept -> std::basic_ostream<char>&
+    {
+        return o;
+    }
+};
 
 
 
