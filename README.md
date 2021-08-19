@@ -1,4 +1,6 @@
 # phlex
+It's flexible... but it basically reads text from datafiles and recognizes patterns. 
+
 Phlex recognizes your code dublications, thus challenging you to think modular about your code. It alerts you when it recognices code repetitions, and it gives you the option to let it automatically encapsulate similarities and factor out. Train away those bad coding habits of yours!
 
 <!-- Phlex learns your coding habits and makes development much easier, allowing you to focus on being creative in your coding and NOT getting disrupted with easy things such as setting up your project from scratch. phlex learns how you structure your projects and it basically lets you create a new project from scratch with just a new name for the project. Perfect tool for developing crossplatform applications for your big next multi-cloud application.  -->
