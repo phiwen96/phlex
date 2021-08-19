@@ -14,6 +14,7 @@ foreach (file IN LISTS children)
 
 	if (IS_DIRECTORY ${file})
 		add_test (NAME test_${file} CONFIGURATIONS Debug Release WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR} COMMAND $<TARGET_FILE:app> ${file})
+		set_tests_properties (test_${file} PROPERTIES DISABLED YES)
 	endif ()
 	
 endforeach ()

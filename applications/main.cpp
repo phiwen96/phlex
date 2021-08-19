@@ -30,6 +30,11 @@ auto start_console (auto conf) -> int
 
 int main (int argc, char** argv)
 {
+    
+    
+//#ifdef Debug
+//    cout << "debug" << endl;
+//#endif
     auto mode = (APPLICATION_MODE) argc;
     
     switch (mode)

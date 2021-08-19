@@ -12,6 +12,8 @@ add_executable (app ${SOURCE_LIST})
 
 target_link_libraries (app PRIVATE phlex ph_file)
 
+target_compile_definitions (app PRIVATE "$<$<CONFIG:DEBUG>:DEBUG> $<$<CONFIG:RELEASE>:RELEASE>")
+
 set_target_properties (
 	app 
 
