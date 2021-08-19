@@ -34,6 +34,12 @@ endif ()
 
 ```
 
+running phlex on the cmake files is so easy, and it directly recognizes the dublications and alerts you:
+```console
+foo@bar:~$ phlex 
+Possible code dublications!
+```
+
 
 <!-- Let's say you are working on your next big application, 
 here is a taste of using phlex.
