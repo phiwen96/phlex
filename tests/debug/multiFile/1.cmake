@@ -1,5 +1,4 @@
- include (FetchContent)
-	FetchContent_Declare(
+FetchContent_Declare(
   		ph_cmake
   		GIT_REPOSITORY https://github.com/phiwen96/ph_cmake.git
   		GIT_TAG        v0.0.0)
