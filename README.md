@@ -4,6 +4,36 @@ Phlex recognizes your code dublications, thus challenging you to think modular a
 Learns your coding habits and makes development much easier and automated, allowing you to focus on being creative in your coding and NOT getting disrupted with easy things such as setting up your project from scratch. phlex learns how you structure your projects and it basically lets you create a new project from scratch with just a new name for the project. Perfect tool for developing crossplatform applications for your big next multi-cloud application. 
 
 
+just run phlex from desired directory, and it reads all subfiles and directories, creates a summary with options (if found) to factor out similarities into functions.
+
+Consider this cmake code.
+```cmake
+FetchContent_Declare(
+  	ph_concepts
+  	GIT_REPOSITORY https://github.com/phiwen96/ph_concepts.git
+  	GIT_TAG        v0.0.0)
+
+FetchContent_GetProperties (ph_concepts)
+	
+if (NOT ph_concepts_POPULATED)
+  	FetchContent_Populate (ph_concepts)
+  	add_subdirectory (${ph_concepts_SOURCE_DIR} ${ph_concepts_BINARY_DIR})
+endif ()
+
+FetchContent_Declare(
+  	ph_file
+  	GIT_REPOSITORY https://github.com/phiwen96/ph_file.git
+  	GIT_TAG        v0.0.0)
+
+FetchContent_GetProperties (ph_file)
+	
+if (NOT ph_file_POPULATED)
+  	FetchContent_Populate (ph_file)
+  	add_subdirectory (${ph_file_SOURCE_DIR} ${ph_file_BINARY_DIR})
+endif ()
+
+```
+
 
 Let's say you are working on your next big application, 
 here is a taste of using phlex.
