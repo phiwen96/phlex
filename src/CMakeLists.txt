@@ -47,7 +47,7 @@ target_compile_definitions (phlex
   	# 	$<$<COMPILE_FEATURES:cxx_override>:-Dphlex_OVERRIDE=override>
   	# 	$<$<NOT:$<COMPILE_FEATURES:cxx_override>>:-Dphlex_OVERRIDE>
 
-	PRIVATE 
+	PUBLIC 
 		"$<$<CONFIG:DEBUG>:DEBUG> $<$<CONFIG:RELEASE>:RELEASE>"
 )
 

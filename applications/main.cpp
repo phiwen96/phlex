@@ -26,15 +26,23 @@ auto start_console (auto conf) -> int
 }
 
 
-
-
+#include <vector>
 int main (int argc, char** argv)
 {
+//    kuken i = {3};
+
+#ifdef DEBUG
     
+#ifndef TEST_DIR
+    throw;
+#endif
     
-//#ifdef Debug
-//    cout << "debug" << endl;
-//#endif
+    cout << "testing dir=" << TEST_DIR << endl;
+    
+    cout << "debug" << endl;
+    
+#endif
+    
     auto mode = (APPLICATION_MODE) argc;
     
     switch (mode)
